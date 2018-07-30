@@ -16,10 +16,13 @@ namespace Moneybox.App
 
         public decimal PaidIn { get; set; }
 
-      //public void CheckBalance(decimal amountWithdrawing )
-      //  {
-      //      if
-      //  }
+        public void CheckBalance(decimal amountWithdrawing)
+        {
+            if (this.Balance - amountWithdrawing < 0m)
+            {
+                throw new InvalidOperationException("Insufficient funds to make transfer");
+            }
+        }
 
     }
 }
