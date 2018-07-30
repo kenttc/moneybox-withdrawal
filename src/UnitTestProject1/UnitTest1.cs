@@ -12,7 +12,7 @@ namespace UnitTestProject1
     public class UnitTest1
     {
         [TestMethod]
-        public void Given_From_account_has_enough_money_and_to_account_has_0_will_remove_amount_withdrawn_from_fromAccountBalance_and_add_it_toToAccountBalance()
+        public void TransferMoney_Given_From_account_has_enough_money_and_to_account_has_0_will_remove_amount_withdrawn_from_fromAccountBalance_and_add_it_toToAccountBalance()
         {
             var fromAccountGuid = new System.Guid("adc1c2b0-bb71-4205-bf95-91bdbda67d75");
             var toAccountId = new System.Guid("065a008a-e33e-4576-8f62-fd1f306e3202");
@@ -37,7 +37,7 @@ namespace UnitTestProject1
 
 
         [TestMethod]
-        public void Given_From_account_has_enough_money_balance_will_be_reduced_by_the_amount_withdrawn()
+        public void WithdrawMoney_Given_From_account_has_enough_money_balance_will_be_reduced_by_the_amount_withdrawn()
         {
             var fromAccountGuid = new System.Guid("adc1c2b0-bb71-4205-bf95-91bdbda67d75");
             
@@ -85,7 +85,7 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void Given_From_account_balance_is_less_than_500m_after_withdrawal_fire_a_notification_NotifyFundsLow()
+        public void WithdrawMoney_Given_From_account_balance_is_less_than_500m_after_withdrawal_fire_a_notification_NotifyFundsLow()
         {
             var fromAccountGuid = new System.Guid("adc1c2b0-bb71-4205-bf95-91bdbda67d75");
 
@@ -110,7 +110,7 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void Ensure_that_account_repo_is_called_to_update_account()
+        public void WithdrawMoney_Ensure_that_account_repo_is_called_to_update_account()
         {
             var fromAccountGuid = new System.Guid("adc1c2b0-bb71-4205-bf95-91bdbda67d75");
 
