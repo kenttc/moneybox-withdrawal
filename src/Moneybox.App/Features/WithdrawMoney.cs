@@ -26,6 +26,13 @@ namespace Moneybox.App.Features
             {
                 throw new InvalidOperationException("Insufficient funds to make transfer");
             }
+
+                       
+
+            if (fromBalance < 500m)
+            {
+                this.notificationService.NotifyFundsLow(fromAccount.User.Email);
+            }
             fromAccount.Balance -= amount;
         }
     }

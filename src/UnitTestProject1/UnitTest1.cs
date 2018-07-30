@@ -84,6 +84,32 @@ namespace UnitTestProject1
 
         }
 
+        [TestMethod]
+        public void Given_From_account_balance_is_less_than_500m_after_withdrawal_fire_a_notification_NotifyFundsLow()
+        {
+            var fromAccountGuid = new System.Guid("adc1c2b0-bb71-4205-bf95-91bdbda67d75");
+
+            var user = new User() { Email = "test@email.com" };
+            var fromAccount = new Account() { Balance = 1000m,User = user };
+
+
+            var accountRepoMock = new Mock<IAccountRepository>();
+            var notificationServiceMock = new Mock<INotificationService>();
+
+            accountRepoMock.Setup(xx => xx.GetAccountById(fromAccountGuid)).Returns(fromAccount);
+
+
+
+            var sut = new WithdrawMoney(accountRepoMock.Object, notificationServiceMock.Object);
+            sut.Execute(fromAccountGuid, 600.0m);
+
+            Assert.AreEqual(400m, fromAccount.Balance);
+
+            notificationServiceMock.Verify(x => x.NotifyFundsLow(fromAccount.User.Email), Times.Once);
+
+        }
+
+
 
     }
 }
