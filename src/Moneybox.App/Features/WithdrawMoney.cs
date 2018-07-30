@@ -20,13 +20,9 @@ namespace Moneybox.App.Features
             // TODO:
 
             var fromAccount = this.accountRepository.GetAccountById(fromAccountId);
-
+            fromAccount.CheckBalance(amount);
             var fromBalance = fromAccount.Balance - amount;
-            //if (fromBalance < 0m)
-            //{
-            //    throw new InvalidOperationException("Insufficient funds to make transfer");
-            //}
-
+      
                        
 
             if (fromBalance < 500m)
