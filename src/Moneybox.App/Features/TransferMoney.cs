@@ -20,15 +20,12 @@ namespace Moneybox.App.Features
             var from = this.accountRepository.GetAccountById(fromAccountId);
             var to = this.accountRepository.GetAccountById(toAccountId);
 
-
-            from.CheckBalance(amount);
+            
+            from.RunWithdrawalChecks(amount, this.notificationService);
 
             var fromBalance = from.Balance - amount;
 
-            //if (fromBalance < 500m)
-            //{
-            //    this.notificationService.NotifyFundsLow(from.User.Email);
-            //}
+
 
             var paidIn = to.PaidIn + amount;
             if (paidIn > Account.PayInLimit)

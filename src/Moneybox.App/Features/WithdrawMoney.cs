@@ -20,7 +20,7 @@ namespace Moneybox.App.Features
             // TODO:
 
             var fromAccount = this.accountRepository.GetAccountById(fromAccountId);
-            fromAccount.CheckBalance(amount);
+            fromAccount.RunWithdrawalChecks(amount, null);
             var fromBalance = fromAccount.Balance - amount;
       
                        

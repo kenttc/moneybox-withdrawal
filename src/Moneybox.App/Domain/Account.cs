@@ -1,4 +1,5 @@
 ﻿using System;
+using Moneybox.App.Domain.Services;
 
 namespace Moneybox.App
 {
@@ -16,13 +17,25 @@ namespace Moneybox.App
 
         public decimal PaidIn { get; set; }
 
-        public void CheckBalance(decimal amountWithdrawing)
+        public void RunWithdrawalChecks(decimal amountWithdrawing, INotificationService notificationService)
         {
+            //usually i wouldn't put notification service in here but i'm not sure of how to do non-pocos so i'm trying to move stuff which are common into the same place do i can keep it DRY.
+
             if (this.Balance - amountWithdrawing < 0m)
             {
                 throw new InvalidOperationException("Insufficient funds to make transfer");
             }
+            if(this.Balance- amountWithdrawing < 500m)
+            {
+                notificationService.NotifyFundsLow(this.User.Email);
+            }
+
         }
+
+        
+
+        
+
 
     }
 }
