@@ -32,9 +32,17 @@ namespace Moneybox.App
 
         }
 
-        
+        public void Withdraw(decimal amount)
+        {
+            this.Balance = this.Balance - amount;
+            this.Withdrawn = this.Withdrawn - amount;
 
-        
+        }
+
+
+
+
+
 
 
     }

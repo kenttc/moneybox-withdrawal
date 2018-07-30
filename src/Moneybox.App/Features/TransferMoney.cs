@@ -34,8 +34,7 @@ namespace Moneybox.App.Features
                 this.notificationService.NotifyApproachingPayInLimit(to.User.Email);
             }
 
-            from.Balance = from.Balance - amount;
-            from.Withdrawn = from.Withdrawn - amount;
+            from.Withdraw(amount);
 
             to.Balance = to.Balance + amount;
             to.PaidIn = to.PaidIn + amount;
