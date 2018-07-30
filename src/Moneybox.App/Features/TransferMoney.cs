@@ -23,10 +23,6 @@ namespace Moneybox.App.Features
             
             from.RunWithdrawalChecks(amount, this.notificationService);
 
-            var fromBalance = from.Balance - amount;
-
-
-
             var paidIn = to.PaidIn + amount;
             if (paidIn > Account.PayInLimit)
             {
