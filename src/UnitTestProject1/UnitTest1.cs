@@ -60,6 +60,30 @@ namespace UnitTestProject1
         }
 
 
+        [TestMethod]
+        [ExpectedException(typeof(System.InvalidOperationException), "Insufficient funds to make transfer")]
+        public void WithdrawMoney_execute_when_amount_withdrawn_results_in_negative_value_will_throw_exception()
+        {
+            var fromAccountGuid = new System.Guid("adc1c2b0-bb71-4205-bf95-91bdbda67d75");
+
+
+            var fromAccount = new Account() { Balance = 1000m, };
+
+
+            var accountRepoMock = new Mock<IAccountRepository>();
+            var notificationServiceMock = new Mock<INotificationService>();
+
+            accountRepoMock.Setup(xx => xx.GetAccountById(fromAccountGuid)).Returns(fromAccount);
+
+
+
+            var sut = new WithdrawMoney(accountRepoMock.Object, notificationServiceMock.Object);
+            sut.Execute(fromAccountGuid, 1001.0m);
+
+            
+
+        }
+
 
     }
 }
