@@ -210,7 +210,7 @@ namespace UnitTestProject1
             sut.Execute(fromAccountGuid, 600.0m);
 
 
-            Assert.AreEqual(600m, fromAccount.Withdrawn);
+            Assert.AreEqual(-600m, fromAccount.Withdrawn);
 
 
 
