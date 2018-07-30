@@ -25,10 +25,10 @@ namespace Moneybox.App.Features
 
             var fromBalance = from.Balance - amount;
 
-            if (fromBalance < 500m)
-            {
-                this.notificationService.NotifyFundsLow(from.User.Email);
-            }
+            //if (fromBalance < 500m)
+            //{
+            //    this.notificationService.NotifyFundsLow(from.User.Email);
+            //}
 
             var paidIn = to.PaidIn + amount;
             if (paidIn > Account.PayInLimit)
