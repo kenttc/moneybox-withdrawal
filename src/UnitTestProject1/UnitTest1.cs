@@ -109,6 +109,30 @@ namespace UnitTestProject1
 
         }
 
+        [TestMethod]
+        public void Ensure_that_account_repo_is_called_to_update_account()
+        {
+            var fromAccountGuid = new System.Guid("adc1c2b0-bb71-4205-bf95-91bdbda67d75");
+
+            var user = new User() { Email = "test@email.com" };
+            var fromAccount = new Account() { Balance = 1000m, User = user };
+
+
+            var accountRepoMock = new Mock<IAccountRepository>();
+            var notificationServiceMock = new Mock<INotificationService>();
+
+            accountRepoMock.Setup(xx => xx.GetAccountById(fromAccountGuid)).Returns(fromAccount);
+
+
+
+            var sut = new WithdrawMoney(accountRepoMock.Object, notificationServiceMock.Object);
+            sut.Execute(fromAccountGuid, 600.0m);
+
+            Assert.AreEqual(400m, fromAccount.Balance);
+            accountRepoMock.Verify(x => x.Update(It.IsAny<Account>()), Times.Once);
+            
+
+        }
 
 
     }
