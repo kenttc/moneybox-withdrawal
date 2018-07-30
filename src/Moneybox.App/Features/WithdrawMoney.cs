@@ -23,9 +23,9 @@ namespace Moneybox.App.Features
 
             fromAccount.RunWithdrawalChecks(amount, this.notificationService);
           
-            fromAccount.Balance = fromAccount.Balance - amount;
+            //fromAccount.Balance = fromAccount.Balance - amount;
 
-            fromAccount.Withdrawn = fromAccount.Withdrawn - amount;
+            //fromAccount.Withdrawn = fromAccount.Withdrawn - amount;
 
             this.accountRepository.Update(fromAccount);
         }
