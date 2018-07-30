@@ -188,7 +188,32 @@ namespace UnitTestProject1
 
         }
 
+        [TestMethod]
+        public void TransferMoney_ensure_withdrawn_is_updated_with_correct_amount()
+        {
+            var fromAccountGuid = new System.Guid("adc1c2b0-bb71-4205-bf95-91bdbda67d75");
+            var toAccountId = new System.Guid("065a008a-e33e-4576-8f62-fd1f306e3202");
 
+            var user = new User() { Email = "test@email.com" };
+            var fromAccount = new Account() { Balance = 1000m, User = user };
+            var toAccount = new Account();
+
+
+            var accountRepoMock = new Mock<IAccountRepository>();
+            var notificationServiceMock = new Mock<INotificationService>();
+
+            accountRepoMock.Setup(xx => xx.GetAccountById(fromAccountGuid)).Returns(fromAccount);
+            accountRepoMock.Setup(xx => xx.GetAccountById(toAccountId)).Returns(toAccount);
+
+
+            var sut = new TransferMoney(accountRepoMock.Object, notificationServiceMock.Object);
+            sut.Execute(fromAccountGuid, toAccountId, 600.0m);
+
+            Assert.AreEqual(-600m, fromAccount.Withdrawn);
+
+            
+
+        }
 
         [TestMethod]
         public void WithdrawMoney_ensure_withdrawn_is_updated_with_correct_amount()
