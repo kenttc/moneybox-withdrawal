@@ -26,4 +26,5 @@ Once you have completed your work, send us a link to your public repository.
 Good luck!
 
 ## Todo
-* moving paid in logic to the account object ? so the domain object has more logic?. ( didn't do this, because it said to refactor SOME code from transfer money but not all ) 
+* moving paid in logic to the account object ? so the domain object has more logic?. ( didn't do this, because it said to refactor SOME code from transfer money but not all )
+* I forgot about the withdraw part after looking through the code - hence it i had to add another 20 mins to the coding time ( test and refactoring the withdraw process)
