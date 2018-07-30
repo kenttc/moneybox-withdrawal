@@ -34,6 +34,7 @@ namespace Moneybox.App.Features
                 this.notificationService.NotifyFundsLow(fromAccount.User.Email);
             }
             fromAccount.Balance -= amount;
+            this.accountRepository.Update(fromAccount);
         }
     }
 }
